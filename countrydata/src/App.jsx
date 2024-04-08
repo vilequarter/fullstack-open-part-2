@@ -8,6 +8,7 @@ import countryService from '../services/CountryService';
 function App() {
   const [allCountries, setAllCountries] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [showCountry, setShowCountry] = useState(null);
 
   useEffect(() => {
     countryService
@@ -27,6 +28,11 @@ function App() {
       country.name.official.toLowerCase().includes(newSearch.toLowerCase())
     );
     setCountries(filteredCountries);
+    setShowCountry(null);
+  }
+
+  const handleShow = (country) => {
+    setShowCountry(country);
   }
 
   return(
@@ -35,7 +41,10 @@ function App() {
 
       {countries.length === 1 ? 
         <CountryInfo country={countries[0]}/> :
-        <CountriesList countries={countries}/>
+        <>
+          <CountriesList countries={countries} handleShow={handleShow}/>
+          {showCountry ? <CountryInfo country={showCountry}/> : <></>}
+        </>
       }
     </div>
   )
