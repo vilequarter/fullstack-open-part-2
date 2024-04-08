@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import SearchForm from '../components/SearchForm'
-import CountriesList from '../components/CountriesList';
-import CountryInfo from '../components/CountryInfo';
+import SearchForm from './components/SearchForm'
+import CountriesList from './components/CountriesList';
+import CountryInfo from './components/CountryInfo';
 
-import countryService from '../services/CountryService';
+import countryService from './services/CountryService';
 
 function App() {
   const [allCountries, setAllCountries] = useState([]);
